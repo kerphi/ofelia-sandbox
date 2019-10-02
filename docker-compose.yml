@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+
+  # le service ofelia qui reste en vie indéfiniement
+  # il joue le rôle d'un démon crond
+  ofelia:
+    image: mcuadros/ofelia:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./ofelia.ini:/etc/ofelia/config.ini
+#      - ./logs/:/var/log/ofelia/
+
+  # la commande lancée periodiquement par ofelia
+  job:
+    container_name: myjob-container
+    image: hello-world
